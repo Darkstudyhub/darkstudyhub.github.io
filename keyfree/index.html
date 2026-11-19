@@ -5,116 +5,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b16">
-<title>DARK | Access Verification</title>
+<title>DARK | Access Granted</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:20px;
- background:
- radial-gradient(circle at 15% 15%,#24205b,transparent 40%),
- radial-gradient(circle at 85% 85%,#183b53,transparent 40%),
- #080b16;
- color:#fff;
- font-family:Arial,sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.card{
- width:100%;
- max-width:430px;
- padding:38px 27px;
- text-align:center;
- border:1px solid #ffffff20;
- border-radius:25px;
- background:#ffffff0b;
- backdrop-filter:blur(20px);
- box-shadow:0 20px 70px #0008;
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 15% 15%,#24205b,transparent 40%),
+    radial-gradient(circle at 85% 85%,#183b53,transparent 40%),
+    #080b16;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
-.logo{
- font-size:38px;
- font-weight:900;
- letter-spacing:6px;
+.card {
+  width: 100%;
+  max-width: 380px;
+  padding: 35px 25px;
+  text-align: center;
+  border: 1px solid #ffffff20;
+  border-radius: 25px;
+  background: #ffffff0b;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 70px #0008;
 }
 
-.tag{
- color:#929fbd;
- margin-top:9px;
- font-size:12px;
- letter-spacing:2px;
+.logo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 6px;
 }
 
-.line{
- height:1px;
- background:#ffffff20;
- margin:28px 0;
+.loader {
+  width: 48px;
+  height: 48px;
+  margin: 30px auto 22px;
+  border: 4px solid #ffffff20;
+  border-top-color: #8065ff;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
 }
 
-h2{
- font-size:23px;
- margin-bottom:13px;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-p{
- color:#aab5d0;
- font-size:14px;
- line-height:1.7;
+h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
 }
 
-.info{
- margin:25px 0;
- padding:17px;
- border:1px solid #ffffff15;
- border-radius:14px;
- background:#ffffff08;
+p {
+  color: #aab5d0;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
-.info strong{
- display:block;
- font-size:25px;
- margin-bottom:5px;
+.status {
+  margin-top: 25px;
+  padding: 13px;
+  border-radius: 12px;
+  background: #ffffff0c;
+  color: #b9c5e0;
+  font-size: 12px;
 }
 
-.info span{
- color:#9ba8c5;
- font-size:12px;
-}
-
-.status{
- padding:14px;
- border-radius:12px;
- background:#ffffff0c;
- color:#b9c5e0;
- font-size:13px;
- margin-bottom:20px;
-}
-
-.community{
- display:block;
- padding:15px;
- border-radius:12px;
- background:linear-gradient(110deg,#536dfe,#984cff);
- color:white;
- text-decoration:none;
- font-weight:bold;
- font-size:13px;
- transition:.3s;
-}
-
-.community:hover{
- transform:translateY(-3px);
- box-shadow:0 8px 25px #765cff55;
-}
-
-.footer{
- margin-top:25px;
- color:#66718c;
- font-size:11px;
+.footer {
+  margin-top: 25px;
+  color: #66718c;
+  font-size: 10px;
 }
 </style>
 </head>
@@ -122,39 +91,40 @@ p{
 <body>
 
 <div class="card">
+  <div class="logo">DARK.</div>
 
- <div class="logo">DARK.</div>
- <div class="tag">YOUR LEARNING DESTINATION</div>
+  <div class="loader"></div>
 
- <div class="line"></div>
+  <h2>Access Granted!</h2>
 
- <h2>Access Verification</h2>
+  <p>
+    Your access is being activated.
+    You will be redirected automatically.
+  </p>
 
- <p>
- Complete the access verification process to unlock
- your study resources.
- </p>
+  <div class="status">
+    Preparing your learning space...
+  </div>
 
- <div class="info">
-  <strong>30 DAYS</strong>
-  <span>Access validity after successful verification</span>
- </div>
-
- <div class="status">
-  Waiting for access verification...
- </div>
-
- <a class="community"
- href="https://t.me/+jxzHY95ocipjY2Q1"
- target="_blank">
- JOIN OUR TELEGRAM COMMUNITY
- </a>
-
- <div class="footer">
-  © 2026 DARK STUDY HUB · ALL RIGHTS RESERVED
- </div>
-
+  <div class="footer">
+    DARK STUDY HUB · 2026
+  </div>
 </div>
+
+<script>
+const ACCESS_KEY = "dark_access_until";
+const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
+
+// Save access for 30 days
+const expiry = Date.now() + ONE_MONTH;
+
+localStorage.setItem(ACCESS_KEY, expiry.toString());
+
+// Redirect to homepage
+setTimeout(() => {
+  window.location.replace("https://darkstudyhub.github.io/");
+}, 1000);
+</script>
 
 </body>
 </html>
